@@ -15,9 +15,9 @@ class Menu:
 
     def run(self, ):
         menu_option = 0
-        pygame.mixer_music.set_volume(0.3)  # Set the volume (0.0 to 1.0)
-        pygame.mixer_music.load('./assets/8bittypemusic1.mp3')
-        pygame.mixer_music.play(-1)  # Loop the music
+        #pygame.mixer_music.set_volume(0.3)  # Set the volume (0.0 to 1.0)
+        #pygame.mixer_music.load('./assets/8bittypemusic1.mp3')
+        #pygame.mixer_music.play(-1)  # Loop the music
         while True:
             # DRAW IMAGES
             self.window.blit(source=self.surf, dest=self.rect)

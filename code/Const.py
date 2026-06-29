@@ -1,12 +1,17 @@
 # C
 COLOR_YELLOW = (255, 255, 0)
 COLOR_WHITE = (255, 255, 255)
+COLOR_RED = (220, 50, 50)
+COLOR_DARK_RED = (80, 20, 20)
 
 # M
 MENU_OPTION = ('NEW GAME',
-              'LOAD GAME',
-              'OPTIONS',
-              'EXIT')
+               'LOAD GAME',
+               'OPTIONS',
+               'EXIT')
+
+# P
+PLAYER_MAX_HP = 20
 
 # W
 WIN_WIDTH = 720
