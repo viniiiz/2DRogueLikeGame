@@ -8,12 +8,13 @@ from code.Player import Player
 from code.Enemy import Enemy, TankEnemy
 from code.Projectile import Projectile
 from code.HUD import HUD
-from code.Const import WIN_WIDTH, WIN_HEIGHT
+from code.Const import WIN_WIDTH, WIN_HEIGHT, LEVEL_TIME
 
 
 ENEMY_LIMIT = 100
-SPAWN_INTERVAL = 40  
-SHOOT_INTERVAL = 65  # frames between each shot (2.5 seconds at 60fps)
+SPAWN_INTERVAL = 180
+MIN_SPAWN_INTERVAL = 30  # minimum interval (0.5 seconds at 60fps) 
+SHOOT_INTERVAL = 150  # frames between each shot (2.5 seconds at 60fps)
 PROJECTILE_DAMAGE = 20
 
 
@@ -35,6 +36,7 @@ class Level:
         self.shoot_timer = 0
         self.current_spawn_interval = SPAWN_INTERVAL
         self.hud = HUD()
+        self.time_left = LEVEL_TIME
 
     def _spawn_enemy(self):
         side = random.choice(['top', 'bottom', 'left', 'right'])
@@ -82,13 +84,19 @@ class Level:
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         return "MENU"
-                    
-            # Progressive spawn
+            # Tick timer
+            self.time_left -= 1
+            if self.time_left <= 0:
+                return "MENU"
+
+            # Progressive spawn based on time
             self.spawn_timer += 1
             if self.spawn_timer >= self.current_spawn_interval and len(self.enemies) < ENEMY_LIMIT:
                 self._spawn_enemy()
                 self.spawn_timer = 0
-                self.current_spawn_interval = max(30, SPAWN_INTERVAL - len(self.enemies) * 8)  
+                # Decrease interval based on time elapsed
+                time_elapsed = LEVEL_TIME - self.time_left
+                self.current_spawn_interval = max(MIN_SPAWN_INTERVAL, SPAWN_INTERVAL - time_elapsed // 60)
 
             # Auto shoot toward closest enemy
             self.shoot_timer += 1
@@ -173,7 +181,7 @@ class Level:
                 projectile.draw(self.window)
 
             # Draw HUD on top of everything
-            self.hud.draw(self.window, self.player.hp)
+            self.hud.draw(self.window, self.player.hp, self.time_left)
 
             pygame.display.flip()
             clock.tick(60)

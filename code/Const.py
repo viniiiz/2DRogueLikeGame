@@ -11,8 +11,11 @@ MENU_OPTION = ('NEW GAME',
                'EXIT')
 
 # P
-PLAYER_MAX_HP = 20
+PLAYER_MAX_HP = 4
 
 # W
 WIN_WIDTH = 720
 WIN_HEIGHT = 720
+
+# L
+LEVEL_TIME = 3600*2  # frames (120 seconds at 60fps)
