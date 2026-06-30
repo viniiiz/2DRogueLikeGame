@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 
 from code.Level import Level
@@ -21,7 +23,7 @@ class Game:
                 level_return = level.run_level()
             elif menu_return == MENU_OPTION[3]:
                 pygame.quit() #Close Window
-                quit() #Exit Program
+                sys.exit() #Exit Program
             else:
                 pass
 

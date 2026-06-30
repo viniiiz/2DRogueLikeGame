@@ -1,4 +1,5 @@
 import math
+import sys
 
 import pygame
 import random
@@ -80,7 +81,7 @@ class Level:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    quit()
+                    sys.exit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         return "MENU"

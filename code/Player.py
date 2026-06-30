@@ -1,6 +1,7 @@
 import pygame
 from code.Entity import Entity
 from code.Const import WIN_WIDTH, WIN_HEIGHT, PLAYER_MAX_HP
+from code.resource_path import resource_path
 
 
 class Player(Entity):
@@ -10,7 +11,8 @@ class Player(Entity):
     INVINCIBILITY_FRAMES = 60  # frames of invincibility after taking damage
 
     def __init__(self, position: tuple):
-        super().__init__('1 Characters/1/U_Idle', position)
+        super().__init__('1 Characters/1/U_Idle', position)  # Entity adds ./assets/ and .png
+        self.surf = pygame.image.load(resource_path('assets/1 Characters/1/U_Idle.png')).convert_alpha()
 
         self.speed = 3
         self.frame_index = 0
@@ -30,7 +32,7 @@ class Player(Entity):
         self.rect = self.surf.get_rect(center=position)
 
     def _load_frames(self, name: str, count: int):
-        sheet = pygame.image.load(f'./assets/1 Characters/1/{name}.png').convert_alpha()
+        sheet = pygame.image.load(resource_path(f'assets/1 Characters/1/{name}.png')).convert_alpha()
         frames = []
         for i in range(count):
             frame = sheet.subsurface(pygame.Rect(i * self.FRAME_SIZE, 0, self.FRAME_SIZE, self.FRAME_SIZE))

@@ -1,5 +1,6 @@
 import pygame
 import math
+from code.resource_path import resource_path
 
 
 class Projectile:
@@ -8,7 +9,7 @@ class Projectile:
     SCALE = (22, 6)
 
     def __init__(self, origin: pygame.Rect, target: pygame.Rect):
-        base_surf = pygame.image.load('./assets/1 Characters/Other/Arrow.png').convert_alpha()
+        base_surf = pygame.image.load(resource_path('assets/1 Characters/Other/Arrow.png')).convert_alpha()
         base_surf = pygame.transform.scale(base_surf, self.SCALE)
 
         # Calculate direction toward target
@@ -45,5 +46,3 @@ class Projectile:
     def draw(self, screen: pygame.Surface):
         draw_rect = self.surf.get_rect(center=self.rect.center)
         screen.blit(self.surf, draw_rect)
-        pygame.draw.rect(screen, (255, 0, 0), self.rect, 1)  # debug hitbox
-    

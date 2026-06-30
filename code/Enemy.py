@@ -1,6 +1,7 @@
 import pygame
 import math
 from code.Entity import Entity
+from code.resource_path import resource_path
 
 
 ENEMY_HP = 20
@@ -38,7 +39,7 @@ class Enemy(Entity):
         self.flip = False
 
     def _load_frames(self, name: str, count: int):
-        sheet = pygame.image.load(f'./assets/3 Dungeon Enemies/2/{name}.png').convert_alpha()
+        sheet = pygame.image.load(resource_path(f'./assets/3 Dungeon Enemies/2/{name}.png')).convert_alpha()
         frames = []
         for i in range(count):
             frame = sheet.subsurface(pygame.Rect(i * self.FRAME_SIZE, 0, self.FRAME_SIZE, self.FRAME_SIZE))
@@ -121,7 +122,7 @@ class TankEnemy(Enemy):
         self.rect = self.surf.get_rect(center=position)
 
     def _load_frames_scaled(self, name: str, count: int):
-        sheet = pygame.image.load(f'./assets/3 Dungeon Enemies/2/{name}.png').convert_alpha()
+        sheet = pygame.image.load(resource_path(f'assets/3 Dungeon Enemies/2/{name}.png')).convert_alpha()
         frames = []
         for i in range(count):
             frame = sheet.subsurface(pygame.Rect(i * self.FRAME_SIZE, 0, self.FRAME_SIZE, self.FRAME_SIZE))
