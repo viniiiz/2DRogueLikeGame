@@ -1,6 +1,6 @@
 0.1 playable demo
 
-add:
+ADD:
 
 - 2 types of enemies
 - player can shoot projectiles
@@ -8,3 +8,9 @@ add:
 - collisions with enemies (enemies collide with others too)
 - spawn enemy progression over time
 - win condition
+
+CONTROLS:
+
+WASD
+ESC for quit
+ENTER for select
