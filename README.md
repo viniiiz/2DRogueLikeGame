@@ -3,7 +3,7 @@
 add:
 
 - 2 types of enemies
-- player shoots projectiles
+- player can shoot projectiles
 - add players hearts, if the hearts reach 0 you lose
 - collisions with enemies (enemies collide with others too)
 - spawn enemy progression over time
